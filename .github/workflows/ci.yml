@@ -1,0 +1,24 @@
+name: CI for HTML
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  lint-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install HTMLHint
+        run: |
+          npm install -g htmlhint
+
+      - name: Run HTMLHint
+        run: |
+          htmlhint index.html
